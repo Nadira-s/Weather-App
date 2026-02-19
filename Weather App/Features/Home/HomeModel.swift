@@ -13,14 +13,4 @@ enum HomeViewState {
     case error(String)
 }
 
-struct ForecastDay: Identifiable {
-    let id = UUID()
-    let city: String
-    let date: String
-    let day: String
-    let temperature: String
-    let condition: String
-    let icon: String
-    let wind: String
-    let humidity: String
-}
+// ForecastDay moved to WeatherModels.swift

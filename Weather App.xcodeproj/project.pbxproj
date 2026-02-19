@@ -10,9 +10,22 @@
 		53763F322F2A016800776920 /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		531186942F46C4A5003211F2 /* Exceptions for "Weather App" folder in "Weather App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = 53763F312F2A016800776920 /* Weather App */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		53763F342F2A016800776920 /* Weather App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				531186942F46C4A5003211F2 /* Exceptions for "Weather App" folder in "Weather App" target */,
+			);
 			path = "Weather App";
 			sourceTree = "<group>";
 		};

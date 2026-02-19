@@ -52,12 +52,14 @@ struct HomeView: View {
             VStack(spacing: 16) {
 
                 WeatherCardView(
-                    city: viewModel.cityName,
-                    temperature: viewModel.temperature,
-                    condition: viewModel.condition,
-                    icon: viewModel.weatherIcon,
-                    wind: viewModel.windSpeed,
-                    humidity: viewModel.humidity
+                    viewModel: WeatherCardViewModel(
+                        title: viewModel.cityName,
+                        temperature: viewModel.temperature,
+                        condition: viewModel.condition,
+                        icon: viewModel.weatherIcon,
+                        wind: viewModel.windSpeed,
+                        humidity: viewModel.humidity
+                    )
                 )
 
                 VStack(alignment: .leading, spacing: 12) {
@@ -86,12 +88,14 @@ struct HomeView: View {
 
     private var weatherView: some View {
         WeatherCardView(
-            city: viewModel.cityName,
-            temperature: viewModel.temperature,
-            condition: viewModel.condition,
-            icon: viewModel.weatherIcon,
-            wind: viewModel.windSpeed,
-            humidity: viewModel.humidity
+            viewModel: WeatherCardViewModel(
+                title: viewModel.cityName,
+                temperature: viewModel.temperature,
+                condition: viewModel.condition,
+                icon: viewModel.weatherIcon,
+                wind: viewModel.windSpeed,
+                humidity: viewModel.humidity
+            )
         )
     }
 }

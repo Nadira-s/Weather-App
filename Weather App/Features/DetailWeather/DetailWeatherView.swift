@@ -76,7 +76,7 @@ struct DetailWeatherView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 16) {
                                 ForEach(model.hourly) { hour in
-                                    HourlyCell(hour: hour)
+                                    HourlyCell(hour: hour, viewModel: model)
                                 }
                             }
                             .padding(.horizontal)

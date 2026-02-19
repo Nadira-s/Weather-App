@@ -1,6 +1,6 @@
 
 //
-//  DetailWeatherModel.swift
+//  DetailWeatherViewModel.swift
 //  Weather App
 //
 //  Created by Nadira Seitkazy  on 02.02.2026.
@@ -17,6 +17,7 @@ final class DetailWeatherViewModel: ObservableObject {
     @Published var errorMessage: String?
 
     @Published var currentWeather: WeatherResponse?
+    @Published var currentWeatherCardViewModel: WeatherCardViewModel?
     @Published var hourly: [HourlyForecast] = []
     
     var formattedDate: String {
@@ -25,12 +26,24 @@ final class DetailWeatherViewModel: ObservableObject {
         return formatter.string(from: Date())
     }
 
-    // Computed property for additional info
+   
     var info: [WeatherInfoItem] {
         guard let weather = currentWeather else { return [] }
         return [
-            WeatherInfoItem(title: Strings.InfoItem.wind, value: "\(weather.windSpeed)m/s", weatherIcon:Strings.InfoItem.wind),
-            WeatherInfoItem(title: Strings.InfoItem.humidity, value: "\(weather.humidity)%", weatherIcon: Strings.InfoItem.humidity),
+            WeatherInfoItem(
+                type: .uvIndex,
+                title: "UV Index",
+                value: "5",
+                subtitle: "Moderate",
+                weatherIcon: "sun.max"
+            ),
+            WeatherInfoItem(
+                type: .wind,
+                title: "Wind",
+                value: "5 m/s",
+                subtitle: nil,
+                weatherIcon: "wind"
+            ),
         ]
     }
 
@@ -67,16 +80,33 @@ final class DetailWeatherViewModel: ObservableObject {
         errorMessage = nil
 
         do {
-            async let weather = service.fetchWeather(for: city)
-            async let hourlyForecast = service.fetchHourlyForecast(for: city)
+            async let weatherDTO = service.fetchWeather(for: city)
+            async let hourlyDTO = service.fetchHourlyForecast(for: city)
 
-            self.currentWeather = try await weather
-            self.hourly = try await hourlyForecast
+            let weather = try await weatherDTO
+            let hourly = try await hourlyDTO
+
+            self.currentWeatherCardViewModel = WeatherCardViewModel(from: weather)
+            self.hourly = HourlyForecast.from(hourly)
 
         } catch {
             errorMessage = error.localizedDescription
         }
 
         isLoading = false
+    }
+    func backgroundView(for hour: HourlyForecast) -> AnyView {
+        if hour.time == Strings.now {
+            return AnyView(
+                LinearGradient(
+                    colors: [ColorTheme.primary, ColorTheme.orange],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .opacity(0.6)
+            )
+        } else {
+            return AnyView(ColorTheme.border)
+        }
     }
 }

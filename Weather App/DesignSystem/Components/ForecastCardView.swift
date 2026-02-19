@@ -7,10 +7,10 @@
 import SwiftUI
 
 struct ForecastCardView: View {
-    let day: ForecastDay
+    let viewModel: WeatherCardViewModel
 
     var body: some View {
-        WeatherCardView(forecast: day)
+        WeatherCardView(viewModel: viewModel)
     }
 }
 

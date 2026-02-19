@@ -29,8 +29,8 @@ struct InfoItemView: View {
                 }
             }
             
-            // Специальная полоска для UV Index (как на макете)
-            if item.title == "UV Index" {
+            
+            if item.type == .uvIndex  {
                 Capsule()
                     .fill(LinearGradient(colors: [.green, .yellow, .orange, .red], startPoint: .leading, endPoint: .trailing))
                     .frame(height: 4)
@@ -38,7 +38,7 @@ struct InfoItemView: View {
                         Circle()
                             .fill(ColorTheme.primary)
                             .frame(width: 8, height: 8)
-                            .offset(x: -20) // Позиция индикатора
+                            .offset(x: -20)
                     )
             }
         }
