@@ -19,7 +19,7 @@ final class HomeViewModel: ObservableObject {
     @Published var hourly: [HourlyForecast] = []
     @Published var currentWeatherCardViewModel: WeatherCardViewModel?
 
-    private let service: WeatherService
+    let service: WeatherService
 
     init(service: WeatherService) {
         self.service = service

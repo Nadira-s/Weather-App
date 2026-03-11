@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5339215D2F4C4504006693B3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5339215C2F4C4504006693B3 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		53763F322F2A016800776920 /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5339215D2F4C4504006693B3 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = "Weather App";
 			packageProductDependencies = (
+				5339215C2F4C4504006693B3 /* Alamofire */,
 			);
 			productName = "Weather App";
 			productReference = 53763F322F2A016800776920 /* Weather App.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 53763F292F2A016800776920;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5339215B2F4C4504006693B3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 53763F332F2A016800776920 /* Products */;
 			projectDirPath = "";
@@ -341,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5339215B2F4C4504006693B3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.11.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5339215C2F4C4504006693B3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5339215B2F4C4504006693B3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 53763F2A2F2A016800776920 /* Project object */;
 }

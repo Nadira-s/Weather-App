@@ -11,11 +11,11 @@ struct HomeView: View {
     @ObservedObject var router: AppRouter
     @StateObject private var viewModel: HomeViewModel
 
-    init(router: AppRouter) {
+    init(router: AppRouter, service: WeatherService) {
         self.router = router
         _viewModel = StateObject(
             wrappedValue: HomeViewModel(
-                service: OpenWeatherService()
+                service: service
             )
         )
     }
@@ -69,7 +69,7 @@ struct HomeView: View {
                     ForEach(viewModel.forecast) { day in
                         ForecastRowView(model: day)
                             .onTapGesture {
-                                let vm = DetailWeatherViewModel()
+                                let vm = DetailWeatherViewModel(service: viewModel.service)
                                 Task {
                                     await vm.load(city: day.city)
                                 }

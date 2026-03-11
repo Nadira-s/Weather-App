@@ -13,29 +13,25 @@ protocol WeatherService {
 }
 
 final class OpenWeatherService: WeatherService {
+    private let apiKey: String
     
-    private let network: NetworkManager
-    
-    init(network: NetworkManager = NetworkManager()) {
-            self.network = network
-        }
+    private let repository: WeatherRepository
+    init(repository: WeatherRepository) {
+        self.repository = repository
+        self.apiKey = Strings.apiKey
+    }
 
     func fetchWeather(for city: String) async throws -> WeatherDTO {
-          try await network.request(
-              endpoint: WeatherEndpoint.current(city: city).urlRequest
-          )
-      }
+        try await repository.fetchCurrent(city: city, apiKey: apiKey)
+    }
 
     func fetchForecast(for city: String) async throws -> ForecastDTO {
-           try await network.request(
-               endpoint: WeatherEndpoint.forecast(city: city).urlRequest
-           )
-       }
+        try await repository.fetchForecast(city: city, apiKey: apiKey)
+    }
     
     func fetchHourlyForecast(for city: String) async throws -> ForecastDTO {
-            try await network.request(
-                endpoint: WeatherEndpoint.forecast(city: city).urlRequest
-            )
-        }
-
+        // For OpenWeather 2.5, hourly is usually part of onecall or just use forecast
+        try await repository.fetchForecast(city: city, apiKey: apiKey)
+    }
 }
+

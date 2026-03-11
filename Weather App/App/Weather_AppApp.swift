@@ -7,11 +7,27 @@
 
 import SwiftUI
 
+final class AppDependencies {
+    let apiClient: APIClient
+    let weatherRepository: RemoteWeatherRepository
+    let weatherService: WeatherService
+
+    init() {
+        let client = APIClient()
+        self.apiClient = client
+        let repo = RemoteWeatherRepository(api: client)
+        self.weatherRepository = repo
+        self.weatherService = OpenWeatherService(repository: repo)
+    }
+}
+
 @main
 struct Weather_AppApp: App {
+    private let deps = AppDependencies()
+    
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(dependencies: deps)
         }
     }
 }

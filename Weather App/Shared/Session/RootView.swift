@@ -6,17 +6,18 @@
 //
 import SwiftUI
 
-struct RootView: View{
+struct RootView: View {
+    let dependencies: AppDependencies
     @StateObject private var router = AppRouter()
     
-    var body:some View {
+    var body: some View {
         switch router.route {
         case .splash:
             SplashScreenView(router: router)
         case .home:
-            HomeView(router: router)
+            HomeView(router: router, service: dependencies.weatherService)
         case .detail(let model):
-                DetailWeatherView(model: model, router: router)
+            DetailWeatherView(model: model, router: router)
         }
     }
 }

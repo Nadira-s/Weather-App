@@ -71,7 +71,7 @@ final class DetailWeatherViewModel: ObservableObject {
         }
     }
 
-    init(service: WeatherService = OpenWeatherService()) {
+    init(service: WeatherService) {
         self.service = service
     }
 
